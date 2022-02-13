@@ -1,0 +1,129 @@
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Tableのセル結合</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="content-frame">
+        <h3>Tableのセル結合</h3>
+        <hr>
+        <div class="content-frame">
+            <input type="checkbox" id="col1" checked ><label for="col1">カラム１</label>
+            <input type="checkbox" id="col2" checked><label for="col2">カラム２</label>
+            <input type="checkbox" id="col3" checked><label for="col3">カラム３</label>
+            <button type="button" class="nomal-button" id="CellConbine">結合する</button>
+            <button type="button" class="nomal-button" id="Reload">もう一度やってみる</button>
+        </div>
+
+        <table>
+            <thead >
+                <tr>
+                    <th>
+                        カラム１
+                    </th>
+                    <th>
+                        カラム２
+                    </th>
+                    <th>
+                        カラム３
+                    </th>
+                    <th>
+                        カラム４
+                    </th>
+                    <th>
+                        カラム５
+                    </th>
+                </tr>
+            </thead>
+            <tbody id = "mainTableBody">
+                    <tr>
+                        <td >A1</td><td >B1</td><td >C1</td><td >D1</td><td >E1</td>
+                    </tr>
+                    <tr>
+                        <td >A1</td><td >B1</td><td >C1</td><td >D2</td><td >E2</td>
+                    </tr>
+                    <tr>
+                        <td >A1</td><td >B2</td><td >C2</td><td >D3</td><td >E3</td>
+                    </tr>
+                    <tr>
+                        <td >A1</td><td >B2</td><td >C2</td><td >D4</td><td >E4</td>
+                    </tr>
+                    <tr>
+                        <td >A1</td><td >B3</td><td >C3</td><td >D5</td><td >E5</td>
+                    </tr>
+                    <tr>
+                        <td >A2</td><td >B1</td><td >C1</td><td >D1</td><td >E6</td>
+                    </tr>
+                    <tr>
+                        <td >A2</td><td >B1</td><td >C1</td><td >D2</td><td >E7</td>
+                    </tr>
+                    <tr>
+                        <td >A2</td><td >B2</td><td >C2</td><td >D3</td><td >E8</td>
+                    </tr>
+                    <tr>
+                        <td >A2</td><td >B2</td><td >C2</td><td >D4</td><td >E9</td>
+                    </tr>
+                    <tr>
+                        <td >A2</td><td >B3</td><td >C3</td><td >D5</td><td >E10</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B1</td><td >C1</td><td >D1</td><td >E11</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B1</td><td >C1</td><td >D2</td><td >E12</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B2</td><td >C2</td><td >D3</td><td >E13</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B2</td><td >C2</td><td >D4</td><td >E14</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B3</td><td >C3</td><td >D5</td><td >E15</td>
+                    </tr>
+                    <tr>
+                        <td >A3</td><td >B3</td><td >C4</td><td >D5</td><td >E15</td>
+                    </tr>
+
+                </tbody>
+        </table>
+        <div class="content-frame">
+            <a href="../index.html">戻る</a>
+        </div>
+    </div>    
+    <script type="module">
+        // import { convineColumn as convine } from "./convineColumn.js";
+        // 全部improt
+        import * as convine from "./convineColumn.js";
+
+        const exButton = document.getElementById('CellConbine');
+        exButton.addEventListener('click', event => {
+            const elemCollection = document.getElementById('mainTableBody').children;
+            // convine(Array.from(elemCollection), [0,1,2]);
+
+            const col2 = document.getElementById('col2');
+            const col3 = document.getElementById('col3');
+            let paramArr = [];
+            if (col1.checked) {
+                paramArr.push(0);
+            }
+            if (col2.checked) {
+                paramArr.push(1);
+            }
+            if (col3.checked) {
+                paramArr.push(2);
+            }
+            if (paramArr.length > 0) {
+               convine.convineColumn(Array.from(elemCollection), paramArr);
+                exButton.setAttribute("disabled", true);
+            }
+        });
+        const reloadButton = document.getElementById('Reload');
+        reloadButton.addEventListener('click', event => {
+            location.reload();
+        });
+
+    </script>
+</body>
+</html>

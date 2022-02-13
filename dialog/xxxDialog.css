@@ -1,0 +1,32 @@
+.xxxDialog {
+    padding: 0;
+    border: 0;
+    box-shadow: 7px 7px 7px dimgray;
+    width: 350px;
+}
+
+.xxxDialogTitle {
+    padding-left: 10px;
+    background-color: skyblue;
+}
+
+.xxxDialogMsg{
+    padding-left: 10px;
+}
+.xxxDialogButton{
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 12px 5px 12px;
+    box-shadow: 2px 2px 2px dimgray;
+    margin-right: 10px
+}
+
+.xxxDialogFrame{
+    padding: 12px 12px 12px 12px;
+}
+
+.xxxDialogMsgArea {
+    display: flex;
+    justify-content: flex-start;
+    
+}

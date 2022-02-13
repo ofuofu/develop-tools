@@ -1,0 +1,41 @@
+body {
+    font-family: 'Arial','Courier','Yu Gothic','メイリオ','游ゴシック体';
+}
+
+.input-lp {
+    padding-left: 0.5em;
+}
+
+.msg-frame{
+    padding: 12px 12px 12px 12px;
+}
+
+.content-frame{
+    padding: 12px 12px 12px 12px;
+}
+
+.nomal-button{
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 12px 5px 12px;
+    box-shadow: 2px 2px 2px dimgray;
+    margin-right: 10px
+}
+
+th {
+    background-color: blue;
+    color: white;
+    font-size: large;
+    text-align: center;
+    border: solid 1px;
+    padding: 10px;
+}
+td {
+    border: solid 1px;
+    padding: 10px;
+}
+
+table {
+    width: 800px;
+    border-collapse:  collapse; /* セルの線を重ねる */
+}
