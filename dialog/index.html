@@ -51,7 +51,10 @@
     <!-- ここから下がダイアログ-->
     <!-- 情報 -->
     <dialog id="xxxInfoDialog" class="xxxDialog">
-      <div id="xxxInfoDialogTitle" class="xxxDialogTitle"></div>
+      <div class="xxxDialogTitle">
+        <span id="xxxInfoDialogTitle"></span>
+        <span class="xxxDialogDefaultCancel"></span>
+      </div>
       <div class="xxxDialogFrame">
         <div class="xxxDialogMsgArea">
             <img src="./info.png" width="30" height="30">
@@ -64,7 +67,10 @@
     </dialog>
     <!-- 確認 -->
     <dialog id="xxxQuestionDialog" class="xxxDialog">
-      <div id="xxxQuestionDialogTitle" class="xxxDialogTitle"></div>
+      <div class="xxxDialogTitle">
+        <span id="xxxQuestionDialogTitle"></span>
+        <span class="xxxDialogDefaultCancel"></span>
+      </div>
       <div class="xxxDialogFrame">
         <div class="xxxDialogMsgArea">
             <img src="./question.png" width="30" height="30">
@@ -78,7 +84,10 @@
     </dialog>
     <!-- 注意（警告） -->
     <dialog id="xxxCautionDialog" class="xxxDialog">
-      <div id="xxxCautionDialogTitle" class="xxxDialogTitle"></div>
+      <div class="xxxDialogTitle">
+        <span id="xxxCautionDialogTitle"></span>
+        <span class="xxxDialogDefaultCancel"></span>
+      </div>
       <div class="xxxDialogFrame">
         <div class="xxxDialogMsgArea">
             <img src="./caution.png" width="30" height="30">
@@ -91,7 +100,10 @@
     </dialog>
     <!-- システムエラー -->
     <dialog id="xxxErrorDialog" class="xxxDialog">
-      <div id="xxxErrorDialogTitle" class="xxxDialogTitle"></div>
+      <div class="xxxDialogTitle">
+        <span id="xxxErrorDialogTitle"></span>
+        <span class="xxxDialogDefaultCancel"></span>
+      </div>
       <div class="xxxDialogFrame">
         <div class="xxxDialogMsgArea">
             <img src="./error.png" width="30" height="30">
@@ -125,6 +137,8 @@
           res.innerText = "情報ダイアログで、「ＯＫ」が押されました。";
           dialog.close();
         });
+        // バツボタンの初期化
+        initDefaultCancelButton(dialog);
       }
 
       // 確認ダイアログの初期化関数
@@ -151,6 +165,8 @@
           res.innerText = "確認ダイアログで、「はい」が押されました。";
           dialog.close();
         });
+        // バツボタンの初期化
+        initDefaultCancelButton(dialog);
       }
       // 注意（警告）ダイアログの初期化関数
       const initCautionDialog = () => {
@@ -170,6 +186,8 @@
           res.innerText = "注意（警告）ダイアログで、「ＯＫ」が押されました。";
           dialog.close();
         });
+        // バツボタンの初期化
+        initDefaultCancelButton(dialog);
       }
 
       // システムエラーダイアログの初期化関数
@@ -190,6 +208,8 @@
           res.innerText = "システムエラーダイアログで、「ＯＫ」が押されました。";
           dialog.close();
         });
+          // バツボタンの初期化
+          initDefaultCancelButton(dialog);
       }
 
       // 情報ダイアログの初期化

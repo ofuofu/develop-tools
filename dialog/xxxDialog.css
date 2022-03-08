@@ -6,7 +6,7 @@
 }
 
 .xxxDialogTitle {
-    padding-left: 10px;
+    padding: 0.3em 0.6em 0.3em 0.6em; /* 上 右 下 左 */
     background-color: skyblue;
 }
 
@@ -29,4 +29,28 @@
     display: flex;
     justify-content: flex-start;
     
+}
+
+.xxxDialogDefaultCancel {
+    display: block;
+    position: relative;
+    width: 23px;
+    height: 23px;
+    float: right;  /* 右寄せ */
+}
+.xxxDialogDefaultCancel::before, .xxxDialogDefaultCancel::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px; /* 棒の幅（太さ） */
+    height: 23px; /* 棒の高さ */
+    background: #333; /* バツ印の色 */
+}
+.xxxDialogDefaultCancel::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.xxxDialogDefaultCancel::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
 }

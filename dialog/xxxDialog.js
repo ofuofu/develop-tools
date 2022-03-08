@@ -29,6 +29,13 @@ const showErrorDialog = (dialog, titleText, message) => {
   msg.innerHTML = message;
   dialog.showModal(); 
 }
+const initDefaultCancelButton = (dialog) => {
+  let defaultCancelButton = dialog.getElementsByClassName('xxxDialogDefaultCancel')[0];
+  defaultCancelButton.addEventListener('click',  event => {
+    dialog.close();
+  });  
+}
+
 
 
 //export {showYesNoDialog};
