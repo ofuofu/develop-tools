@@ -1,4 +1,16 @@
+.fix-tr-div{
+    height: 800px;
+    overflow-y: auto;
+	overflow-y: auto;
+}
+
+table.fix-tr {
+	position: relative;
+}
+
+
 table.fix-tr th {
 	position: sticky;
 	top: 0;
 }
+
