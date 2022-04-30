@@ -10,6 +10,19 @@
   <body>
     <h2>WindowsFormのメッセージボックスっぽいダイアログ</h2>
     <div class="content-frame">
+      <ul>
+        <li>「xxxDialog.css」のxxx部分をプロジェクトに合わせて変更する。</li>
+        <li>「dialogタグ」を使いたいPageに貼付る。</li>
+        <li>各ボタンにイベント設定をする。</li>
+    </ul>  
+    </div>
+  <hr>
+
+    <div class="content-frame">
+      <p>ボイス：<select name="voiceSelect" id="voiceSelect"></select></p>
+    </div>
+
+    <div class="content-frame">
       <label for="InfoTitle">タイトル：</label>
       <input type="text" id="InfoTitle" name="InfoTitle" minlength="4" maxlength="10" size="12" value="情報">
       <label for="InfoTitle" class="input-lp">内容：</label>
@@ -115,9 +128,12 @@
       </div>
     </dialog>
 
+    <script src="./speekDialog.js"></script>
     <script src="./xxxDialog.js"></script>
     <script>
       //import { dialog } from ".xxxDialog";
+
+      const voiceSelect = document.getElementById('voiceSelect');
 
       // 情報ダイアログの初期化関数
       const initInfoDialog = () => {
@@ -129,6 +145,7 @@
         // 情報ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
+          speakDialog(contents.value, voiceSelect);
           showInfoDialog(dialog, title.value, contents.value);
         });
         // 情報ダイアログ「Ok」
@@ -151,6 +168,7 @@
         // 確認ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
+          speakDialog(contents.value, voiceSelect);
           showYesNoDialog(dialog, title.value, contents.value);
         });
         // 確認ダイアログ「Cancel」
@@ -178,6 +196,7 @@
         // 注意（警告）ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
+          speakDialog(contents.value, voiceSelect);
           showCautionDialog(dialog, title.value, contents.value);
         });
         // 注意（警告）ダイアログ「Ok」
@@ -200,6 +219,7 @@
         // システムエラーダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
+          speakDialog(contents.value, voiceSelect);
           showErrorDialog(dialog, title.value, contents.value);
         });
         // システムエラーダイアログ「Ok」
@@ -211,7 +231,8 @@
           // バツボタンの初期化
           initDefaultCancelButton(dialog);
       }
-
+      // ボイスselectの初期化      
+      createVoiceList(voiceSelect);
       // 情報ダイアログの初期化
       initInfoDialog();
       // 確認ダイアログの初期化
@@ -220,7 +241,6 @@
       initCautionDialog();
       // システムエラーダイアログの初期化
       initErrorDialog();
-
 
     </script>
   </body>
