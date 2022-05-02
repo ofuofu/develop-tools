@@ -3,6 +3,7 @@
   <meta charset="utf-8">
   <title>音声認識</title>
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="./VoiceRecognition.css">
 </head>
 <body>
     <div class="content-frame">
@@ -38,24 +39,26 @@
             const resultContents = document.getElementById('resultContents');
             const recordStatus = document.getElementById('recordStatus');
             recognition.onresult = (event) => {
-                    resultContents.innerText = event.results[0][0].transcript;
+                resultContents.innerText = event.results[0][0].transcript;
+            }
+            recognition.onstart = (event) => {
+                recordStatus.style.color = "red";
+                recordStatus.innerText = "収録中…";
             }
 
-            recognition.onspeechstart = function() {
+            recognition.onspeechstart = (event) => {
                 console.log('音声が検出できました。');
             }
-            recognition.onspeechend = function() {
-                console.log('音声の検出が終わりました。');
-                recordStatus.style.color = "green";
+            recognition.onspeechend = (event) => {
+                recordStatus.style.color = "white";
                 recordStatus.innerText = "収録終了";
+                recognition.stop();
             }
 
             // ボタンクリックで収録を開始する。
             const exButton = document.getElementById('recordVoice');
             exButton.addEventListener('click', (event) => {
-                    recognition.start();
-                    recordStatus.style.color = "red";
-                    recordStatus.innerText = "収録中…";
+                recognition.start();
             });
 
         }
