@@ -1,0 +1,64 @@
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>音声認識</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="content-frame">
+        <h3>音声認識</h3>
+        <h4>実装方法</h4>
+        <ul>
+            <li>SpeechRecognitionを使用する。</li>
+        </ul>
+        <hr>
+        <div class="content-frame">
+            <button type="button" class="nomal-button" id="recordVoice">収録する</button>
+            <p id="recordStatus"></p>
+        </div>
+        <div class="content-frame">
+            <label for="resultContents" class="input-lp">収録内容：</label><br/>
+            <textarea id="resultContents" class="input-lp" name="resultsContents" rows="12" cols="60"></textarea>
+        </div>
+        <div class="content-frame">
+            <a href="../index.html">戻る</a>
+        </div>
+    </div>    
+    <script>
+        window.onload = () => {
+            SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+            const recognition = new SpeechRecognition();
+            // 継続的に結果を返すか
+            recognition.continuous = false;
+            // 言語
+            recognition.lang = 'ja-JP';
+            recognition.interimResults = true;
+            recognition.maxAlternatives = 1;
+
+            const resultContents = document.getElementById('resultContents');
+            const recordStatus = document.getElementById('recordStatus');
+            recognition.onresult = (event) => {
+                    resultContents.innerText = event.results[0][0].transcript;
+            }
+
+            recognition.onspeechstart = function() {
+                console.log('音声が検出できました。');
+            }
+            recognition.onspeechend = function() {
+                console.log('音声の検出が終わりました。');
+                recordStatus.style.color = "green";
+                recordStatus.innerText = "収録終了";
+            }
+
+            // ボタンクリックで収録を開始する。
+            const exButton = document.getElementById('recordVoice');
+            exButton.addEventListener('click', (event) => {
+                    recognition.start();
+                    recordStatus.style.color = "red";
+                    recordStatus.innerText = "収録中…";
+            });
+
+        }
+    </script>
+</body>
+</html>
