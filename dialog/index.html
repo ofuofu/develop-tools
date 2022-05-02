@@ -10,6 +10,7 @@
   <body>
     <h2>WindowsFormのメッセージボックスっぽいダイアログ</h2>
     <div class="content-frame">
+      <h4>使い方</h4>
       <ul>
         <li>「xxxDialog.css」のxxx部分をプロジェクトに合わせて変更する。</li>
         <li>「dialogタグ」を使いたいPageに貼付る。</li>
@@ -26,7 +27,7 @@
       <label for="InfoTitle">タイトル：</label>
       <input type="text" id="InfoTitle" name="InfoTitle" minlength="4" maxlength="10" size="12" value="情報">
       <label for="InfoTitle" class="input-lp">内容：</label>
-      <input type="text" id="InfoContents" name="InfoContents" minlength="4" maxlength="24"  size="38" value="モソブラソが冷蔵庫にあります。">
+      <input type="text" id="InfoContents" name="InfoContents" minlength="4" maxlength="24"  size="52" value="モソブラソが冷蔵庫にあります。">
       <button id="ShowInfoButton">情報ダイアログを表示</button>
       <div id="InfoRes" class="msg-frame"></div>
     </div>
@@ -35,7 +36,7 @@
       <label for="QuestionTitle">タイトル：</label>
       <input type="text" id="QuestionTitle" name="QuestionTitle" minlength="4" maxlength="10" size="12" value="確認">
       <label for="QuestionTitle" class="input-lp">内容：</label>
-      <input type="text" id="QuestionContents" name="QuestionContents" minlength="4" maxlength="24" size="38" value="モソブラソを食べます。<br/>よろしいですか？">
+      <input type="text" id="QuestionContents" name="QuestionContents" minlength="4" maxlength="24" size="52" value="モソブラソを食べます。<br/>よろしいですか？">
       <button id="ShowYesNoButton">確認ダイアログを表示</button>
       <div id="QuestionRes" class="msg-frame"></div>
     </div>
@@ -44,7 +45,7 @@
       <label for="CautionTitle">タイトル：</label>
       <input type="text" id="CautionTitle" name="CautionTitle" minlength="4" maxlength="10" size="12" value="注意（警告）">
       <label for="CautionTitle" class="input-lp">内容：</label>
-      <input type="text" id="CautionContents" name="CautionContents" minlength="4" maxlength="24"  size="38" value="モソブラソは、１日１個までです。">
+      <input type="text" id="CautionContents" name="CautionContents" minlength="4" maxlength="24"  size="52" value="モソブラソは、１日１個までです。">
       <button id="ShowCautionButton">注意（警告）ダイアログを表示</button>
       <div id="CautionRes" class="msg-frame"></div>
     </div>
@@ -53,7 +54,7 @@
       <label for="ErrorTitle">タイトル：</label>
       <input type="text" id="ErrorTitle" name="ErrorTitle" minlength="4" maxlength="10" size="12" value="システムエラー">
       <label for="ErrorTitle" class="input-lp">内容：</label>
-      <input type="text" id="ErrorContents" name="ErrorContents" minlength="4" maxlength="24"  size="38" value="モソブラソが腐っていました。<br/>購入元に連絡してください。">
+      <input type="text" id="ErrorContents" name="ErrorContents" minlength="4" maxlength="24"  size="52" value="モソブラソが腐っています。<br/>購入元に連絡してください。">
       <button id="ShowErrorButton">システムエラーダイアログを表示</button>
       <div id="ErrorRes" class="msg-frame"></div>
     </div>

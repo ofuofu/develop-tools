@@ -12,14 +12,26 @@ const convertSpeakWord = (speakWord) => {
 */
 
 createVoiceList = (voiceSelect) => {
+  /*
   voices = synth.getVoices().sort(function (a, b) {
       const aname = a.name.toUpperCase(), bname = b.name.toUpperCase();
       if ( aname < bname ) return -1;
       else if ( aname == bname ) return 0;
       else return +1;
   });
+  */
+  voices = synth.getVoices()
   const selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
   voiceSelect.innerHTML = '';
+  // 空行
+  {
+    let option = document.createElement('option');
+    option.textContent = '選択してください。';
+    option.setAttribute('data-lang', '');
+    option.setAttribute('data-name', '');
+    voiceSelect.appendChild(option);  
+  }
+
   for(i = 0; i < voices.length ; i++) {
     if (voices[i].lang === 'ja-JP' ) {
       let option = document.createElement('option');
@@ -38,6 +50,11 @@ createVoiceList = (voiceSelect) => {
 }
 
 const speakDialog = (speakWord, voiceSelect) => {
+    const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
+    if (selectedOption === '') {
+      console.error('no voice select');
+      return;      
+    }
     if (synth.speaking) {
         console.error('speechSynthesis.speaking');
         return;
@@ -52,7 +69,6 @@ const speakDialog = (speakWord, voiceSelect) => {
         console.error('SpeechSynthesisUtterance.onerror');
     }
     // 選択されたVoiceを設定する。
-    const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     for(i = 0; i < voices.length ; i++) {
       if(voices[i].name === selectedOption) {
         utterThis.voice = voices[i];
