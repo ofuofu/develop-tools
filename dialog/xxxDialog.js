@@ -1,3 +1,7 @@
+/*
+    Windows Formっぽいダイアログ JS
+    © 2022 Hiromichi Yoneda
+*/
 const showYesNoDialog = (dialog, titleText, message) => {
   const title = document.getElementById('xxxQuestionDialogTitle');
   const msg = document.getElementById('xxxQuestionDialogMsg');
@@ -36,6 +40,5 @@ const initDefaultCancelButton = (dialog) => {
   });  
 }
 
+export { showYesNoDialog, showInfoDialog, showCautionDialog, showErrorDialog, initDefaultCancelButton};
 
-
-//export {showYesNoDialog};

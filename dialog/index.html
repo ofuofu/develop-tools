@@ -129,10 +129,9 @@
       </div>
     </dialog>
 
-    <script src="./speekDialog.js"></script>
-    <script src="./xxxDialog.js"></script>
-    <script>
-      //import { dialog } from ".xxxDialog";
+    <script type="module">
+      import * as speakDialog from "./speekDialog.js";
+      import * as xxDialog from "./xxxDialog.js";
 
       const voiceSelect = document.getElementById('voiceSelect');
 
@@ -146,8 +145,8 @@
         // 情報ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
-          speakDialog(contents.value, voiceSelect);
-          showInfoDialog(dialog, title.value, contents.value);
+          speakDialog.speakDialogMsg(contents.value, voiceSelect);
+          xxDialog.showInfoDialog(dialog, title.value, contents.value);
         });
         // 情報ダイアログ「Ok」
         let dialogOkButton = document.getElementById('xxxInfoDialogOk');
@@ -156,7 +155,7 @@
           dialog.close();
         });
         // バツボタンの初期化
-        initDefaultCancelButton(dialog);
+        xxDialog.initDefaultCancelButton(dialog);
       }
 
       // 確認ダイアログの初期化関数
@@ -169,8 +168,8 @@
         // 確認ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
-          speakDialog(contents.value, voiceSelect);
-          showYesNoDialog(dialog, title.value, contents.value);
+          speakDialog.speakDialogMsg(contents.value, voiceSelect);
+          xxDialog.showYesNoDialog(dialog, title.value, contents.value);
         });
         // 確認ダイアログ「Cancel」
         let dialogCancelButton = document.getElementById('xxxQuestionDialogCancel');
@@ -185,7 +184,7 @@
           dialog.close();
         });
         // バツボタンの初期化
-        initDefaultCancelButton(dialog);
+        xxDialog.initDefaultCancelButton(dialog);
       }
       // 注意（警告）ダイアログの初期化関数
       const initCautionDialog = () => {
@@ -197,8 +196,8 @@
         // 注意（警告）ダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
-          speakDialog(contents.value, voiceSelect);
-          showCautionDialog(dialog, title.value, contents.value);
+          speakDialog.speakDialogMsg(contents.value, voiceSelect);
+          xxDialog.showCautionDialog(dialog, title.value, contents.value);
         });
         // 注意（警告）ダイアログ「Ok」
         let dialogOkButton = document.getElementById('xxxCautionDialogOk');
@@ -207,7 +206,7 @@
           dialog.close();
         });
         // バツボタンの初期化
-        initDefaultCancelButton(dialog);
+        xxDialog.initDefaultCancelButton(dialog);
       }
 
       // システムエラーダイアログの初期化関数
@@ -220,8 +219,8 @@
         // システムエラーダイアログの表示
         showButton.addEventListener('click',  event => {
           res.innerText = "";
-          speakDialog(contents.value, voiceSelect);
-          showErrorDialog(dialog, title.value, contents.value);
+          speakDialog.speakDialogMsg(contents.value, voiceSelect);
+          xxDialog.showErrorDialog(dialog, title.value, contents.value);
         });
         // システムエラーダイアログ「Ok」
         let dialogOkButton = document.getElementById('xxxErrorDialogOk');
@@ -230,10 +229,9 @@
           dialog.close();
         });
           // バツボタンの初期化
-          initDefaultCancelButton(dialog);
+          xxDialog.initDefaultCancelButton(dialog);
       }
-      // ボイスselectの初期化      
-      createVoiceList(voiceSelect);
+
       // 情報ダイアログの初期化
       initInfoDialog();
       // 確認ダイアログの初期化
@@ -242,6 +240,12 @@
       initCautionDialog();
       // システムエラーダイアログの初期化
       initErrorDialog();
+
+      // ChromeでVoiceリストが取得できない問題の回避
+      window.speechSynthesis.onvoiceschanged = () => {
+        // ボイスselectの初期化      
+        speakDialog.createVoiceList(voiceSelect);
+      };
 
     </script>
   </body>
