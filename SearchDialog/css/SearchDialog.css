@@ -1,0 +1,71 @@
+.SearchDialog {
+    padding: 0;
+    border: 0;
+    box-shadow: 7px 7px 7px dimgray;
+    width: 520px;
+}
+
+.SearchDialogTitle {
+    padding: 0.3em 0.6em 0.3em 0.6em; /* 上 右 下 左 */
+    background-color: skyblue;
+    font-weight: bold;
+}
+
+.SearchDialogMsg{
+    padding-left: 10px;
+}
+.SearchDialogButton{
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 12px 5px 12px;
+    box-shadow: 2px 2px 2px dimgray;
+    margin-right: 10px
+}
+
+.SearchDialogFrame{
+    padding: 12px 12px 12px 12px;
+}
+
+.SearchDialogMsgArea {
+    display: flex;
+    justify-content: flex-start;
+    
+}
+
+.SearchDialogDefaultCancel {
+    display: block;
+    position: relative;
+    width: 23px;
+    height: 23px;
+    float: right;  /* 右寄せ */
+}
+.SearchDialogDefaultCancel::before, .SearchDialogDefaultCancel::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 3px; /* 棒の幅（太さ） */
+    height: 23px; /* 棒の高さ */
+    background: #333; /* バツ印の色 */
+}
+.SearchDialogDefaultCancel::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.SearchDialogDefaultCancel::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+#SearchDialogTable {
+    width: 480px;
+    border-collapse: collapse; /* セルの線を重ねる */
+}
+
+tr:hover {
+    background-color: pink;
+}
+
+.liForm {
+    padding: 0.3em 0.5em 0.3em 0.1em; /* 上 右 下 左 */
+    list-style: none;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>確認ダイアログ</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/SearchDialog.css">
+  </head>
+
+  <body>
+    <h2>検索ダイアログ</h2>
+    <div class="content-frame">
+      <h4>実装に関して</h4>
+      <ul >
+        <li>
+          サーバ側
+          <ul>
+            <li>Azure Functionで実装</li>
+            <li>動的に作成された、メンバーデータをランダム最大100件返す</li>
+          </ul>
+        </li>
+      </ul>  
+      <ul >
+        <li>
+          クライアント側
+          <ul>
+            <li>TypeScriptで実装</li>
+            <li>検索ダイアログを表示、「更に表示」ボタンで、100件になるまで10件ずつFetchする。</li>
+          </ul>
+        </li>
+      </ul>  
+    </div>
+  <hr>
+
+    <div class="content-frame">
+      <h4>動作確認</h4>
+      <ul>
+        <li>「検索ダイアログを表示」ボタンで検索用のダイアログが表示されます。</li>
+        <li>ダイアログで選択されたデータがここにセットされます。</li>
+        <li class="liForm">
+          <label for="DataIndex" class="input-lp">No：</label>
+          <input type="text" id="DataIndex" name="DataIndex" size="5" value="" readonly>
+        </li>
+        <li class="liForm">
+          <label for="JapanName" class="input-lp">氏名（漢）：</label>
+          <input type="text" id="JapanName" name="JapanName" size="20" value="" readonly>                
+        </li>
+        <li class="liForm">
+          <label for="RomeName" class="input-lp">氏名（英）：</label>
+          <input type="text" id="RomeName" name="RomeName" size="20" value=""readonly>                
+        </li>
+        <li class="liForm">
+          <label for="Age" class="input-lp">年齢：</label>
+          <input type="text" id="Age" name="Age" size="5" value=""readonly><br/>                
+        </li>
+        <li class="liForm">
+          <button id="ShowSearchDialogButton">検索ダイアログを表示</button>            
+        </li>
+      </ul>
+    </div>
+
+    <!-- ここから下がダイアログ-->
+    <dialog id="SearchDialog" class="SearchDialog">
+      <div class="SearchDialogTitle">
+        <span id="searchInfoDialogTitle">メンバー検索ダイアログ</span>
+        <span class="SearchDialogDefaultCancel"></span>
+      </div>
+      <div class="SearchDialogFrame">
+        <div class="SearchDialogMsgArea">
+            <div id="searchInfoDialogMsg" class="SearchDialogMsg">・選択してください。</div>
+        </div>
+        <div class="">
+          <table class="" id="SearchDialogTable" >
+            <thead >
+                <tr>
+                    <th>No</th>
+                    <th>氏名（漢）</th>
+                    <th>氏名（英）</th>
+                    <th>年齢</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A01</td><td>B01</td><td>C01</td><td>D01</td>
+                </tr>
+                <tr>
+                    <td >A02</td><td >B02</td><td >C02</td><td >D02</td>
+                </tr>
+                <tr>
+                    <td >A03</td><td >B03</td><td >C03</td><td >D03</td>
+                </tr>
+                <tr>
+                    <td >A04</td><td >B04</td><td >C04</td><td >D04</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="SearchDialogFrame">
+        <button id="SearchButton" class="SearchDialogButton">更に表示</button>
+      </div>
+    </dialog>
+    <!-- JavaScript -->
+    <script src="dist/main.js"></script>
+  </body>
+</html>
