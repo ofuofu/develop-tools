@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>確認ダイアログ</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./css/SearchDialog.css">
   </head>
 
@@ -31,8 +31,7 @@
       </ul>  
     </div>
   <hr>
-
-    <div class="content-frame">
+  <div class="content-frame">
       <h4>動作確認</h4>
       <ul>
         <li>「検索ダイアログを表示」ボタンで検索用のダイアログが表示されます。</li>
@@ -54,9 +53,12 @@
           <input type="text" id="Age" name="Age" size="5" value=""readonly><br/>                
         </li>
         <li class="liForm">
-          <button id="ShowSearchDialogButton">検索ダイアログを表示</button>            
+          <button class="nomal-button" id="ShowSearchDialogButton">検索ダイアログを表示</button>            
         </li>
       </ul>
+    </div>
+    <div class="content-frame">
+      <a href="../index.html">戻る</a>
     </div>
 
     <!-- ここから下がダイアログ-->
@@ -80,6 +82,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!--レイアウト調整用<tr>-->
                 <tr>
                     <td>A01</td><td>B01</td><td>C01</td><td>D01</td>
                 </tr>

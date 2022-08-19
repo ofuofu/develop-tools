@@ -21,6 +21,14 @@
     box-shadow: 2px 2px 2px dimgray;
     margin-right: 10px
 }
+.SearchDialogButton:active {
+    border-style: solid;
+    border-width: 1px;
+    padding: 5px 12px 5px 12px;
+    box-shadow: none;
+    position: relative;
+    margin-right: 10px
+}
 
 .SearchDialogFrame{
     padding: 12px 12px 12px 12px;
