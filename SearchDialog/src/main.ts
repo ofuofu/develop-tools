@@ -1,12 +1,20 @@
+type IMember = {
+    dataIndex: number;
+    japanName: string;
+    romeName: string;
+    age: number;
+}
 
 class SearchDialogMain {
     searchButton: HTMLButtonElement;
     showDialogButton: HTMLButtonElement;
     searchDialog: HTMLDialogElement;
-    targetUrl: string = 'https://getdatalist.azurewebsites.net/api/GetSampleData01';
-    accessKey: string = 'HmgM03n4M-TMk4I-kFLkC8DRUMaieEtDxaykadTu2CxmAzFujwaGLw==';
-    startIndex: Number = 1;
-    rowCount: Number = 10;
+    //targetUrl: string = 'https://getdatalist.azurewebsites.net/api/GetSampleData01';
+    targetUrl: string = 'https://hytesttoolsfunc.azurewebsites.net/api/GetSampleData01';
+    //accessKey: string = 'HmgM03n4M-TMk4I-kFLkC8DRUMaieEtDxaykadTu2CxmAzFujwaGLw==';
+    accessKey: string = '7HrnnJNX-7Hg97TMrpRLtBFj68UGsWZdFeKL66pnyzy8AzFuLV83gQ==';
+    startIndex: number = 1;
+    rowCount: number = 10;
     searchDialogTable: HTMLTableElement;
     searchDialogDefaultCancel: HTMLSpanElement;
     dataIndex: HTMLInputElement;
@@ -52,47 +60,54 @@ class SearchDialogMain {
     }
     
     async setMemgerList() {
-        const response = await fetch(
-            this.targetUrl + '?code=' + this.accessKey + 
-            '&startindex=' + this.startIndex + '&rowcount=' + this.rowCount);
-        const dataList = await response.json();
-        
-        if (dataList.length == 0) {
-            this.searchButton.disabled = true;
-            this.searchButton.style.color = "white";
-            return;
-        }
-
-        for (let i = 0; i < dataList.length; i++) {
-            if (i === dataList.length -1) {
-                this.startIndex = dataList[i].dataIndex + 1; 
+        try {
+            const response: Response = await fetch(
+                this.targetUrl + '?code=' + this.accessKey + 
+                '&startindex=' + this.startIndex + '&rowcount=' + this.rowCount);
+            if (!response.ok) {
+                console.log(response.statusText);
+                return;
             }
-            let newRow = this.searchDialogTable.insertRow(-1);
+            const dataList = await response.json();
 
-            let newCell = newRow.insertCell(-1);
-            newCell.innerText = dataList[i].dataIndex;
-            newCell.style.width = "60px";        
-
-            newCell = newRow.insertCell(-1);
-            newCell.innerText = dataList[i].japanName;
-            newCell.style.width = "180px";
-
-            newCell = newRow.insertCell(-1);
-            newCell.innerText = dataList[i].romeName;
-            newCell.style.width = "180px";
-
-            newCell = newRow.insertCell(-1);
-            newCell.innerText = dataList[i].age;
-            newCell.style.width = "60px";
-
-            newRow.addEventListener('click', (elm)=> {
-                const tableTr: HTMLTableRowElement = <HTMLTableRowElement>elm.currentTarget;                
-                this.dataIndex.value = tableTr.cells[0].innerText;
-                this.japanName.value = tableTr.cells[1].innerText;
-                this.romeName.value = tableTr.cells[2].innerText;
-                this.age.value = tableTr.cells[3].innerText;
-                this.searchDialog.close();
-            });    
+            if (dataList.length == 0) {
+                this.searchButton.disabled = true;
+                this.searchButton.style.color = "white";
+                return;
+            }
+            for (let i = 0; i < dataList.length; i++) {
+                if (i === dataList.length -1) {
+                    this.startIndex = dataList[i].dataIndex + 1; 
+                }
+                let newRow = this.searchDialogTable.insertRow(-1);
+    
+                let newCell = newRow.insertCell(-1);
+                newCell.innerText = dataList[i].dataIndex;
+                newCell.style.width = "60px";        
+    
+                newCell = newRow.insertCell(-1);
+                newCell.innerText = dataList[i].japanName;
+                newCell.style.width = "180px";
+    
+                newCell = newRow.insertCell(-1);
+                newCell.innerText = dataList[i].romeName;
+                newCell.style.width = "180px";
+    
+                newCell = newRow.insertCell(-1);
+                newCell.innerText = dataList[i].age;
+                newCell.style.width = "60px";
+    
+                newRow.addEventListener('click', (elm)=> {
+                    const tableTr: HTMLTableRowElement = <HTMLTableRowElement>elm.currentTarget;                
+                    this.dataIndex.value = tableTr.cells[0].innerText;
+                    this.japanName.value = tableTr.cells[1].innerText;
+                    this.romeName.value = tableTr.cells[2].innerText;
+                    this.age.value = tableTr.cells[3].innerText;
+                    this.searchDialog.close();
+                });    
+            }    
+        } catch (err) {
+            console.log(err);
         }
     }
 }
