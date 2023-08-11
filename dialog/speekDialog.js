@@ -11,14 +11,14 @@ const createVoiceList = (voiceSelect) => {
   voices = synth.getVoices();
   const selectedIndex = voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
   voiceSelect.innerHTML = '';
-// 空行
-{
-  let option = document.createElement('option');
-  option.textContent = '選択してください。';
-  option.setAttribute('data-lang', '');
-  option.setAttribute('data-name', '');
-  voiceSelect.appendChild(option);  
-}
+  // 空行を追加 変数名のスコープを明確にするため{}をつけている。
+  {
+    let option = document.createElement('option');
+    option.textContent = '選択してください。';
+    option.setAttribute('data-lang', '');
+    option.setAttribute('data-name', '');
+    voiceSelect.appendChild(option);  
+  }
 
   for(let i = 0; i < voices.length ; i++) {
     if (voices[i].lang === 'ja-JP' ) {
@@ -40,35 +40,36 @@ const createVoiceList = (voiceSelect) => {
 const speakDialogMsg = (speakWord, voiceSelect) => {
     const selectedOption = voiceSelect.selectedOptions[0].getAttribute('data-name');
     if (selectedOption === '') {
-      console.error('no voice select');
+      console.log('no voice select');
       return;      
     }
     if (synth.speaking) {
-        console.error('speechSynthesis.speaking');
+        // speaking中は終了する。
+        console.log('speechSynthesis.speaking');
         return;
     }
     const speakWordEdit = convertSpeakWord(speakWord);
     if (speakWordEdit !== '') {
-    var utterThis = new SpeechSynthesisUtterance(speakWordEdit);
-    utterThis.onend = function (event) {
+      const utterThis = new SpeechSynthesisUtterance(speakWordEdit);
+      utterThis.onend = function (event) {
         console.log('SpeechSynthesisUtterance.onend');
-    }
-    utterThis.onerror = function (event) {
-        console.error('SpeechSynthesisUtterance.onerror');
-    }
-    // 選択されたVoiceを設定する。
-    for(let i = 0; i < voices.length ; i++) {
-      if(voices[i].name === selectedOption) {
-        utterThis.voice = voices[i];
-        break;
       }
+      utterThis.onerror = function (event) {
+        console.error('SpeechSynthesisUtterance.onerror');
+      }
+      // 選択されたVoiceを設定する。
+      for(let i = 0; i < voices.length ; i++) {
+        if(voices[i].name === selectedOption) {
+          utterThis.voice = voices[i];
+          break;
+        }
+      }
+      // pitchの設定しない
+      // utterThis.pitch = pitch.value;
+      // rateの設定しない
+      // utterThis.rate = rate.value;
+      synth.speak(utterThis);
     }
-    // pitchの設定しない
-    // utterThis.pitch = pitch.value;
-    // rateの設定しない
-    // utterThis.rate = rate.value;
-    synth.speak(utterThis);
-  }
 }
 
 export { createVoiceList, speakDialogMsg };
